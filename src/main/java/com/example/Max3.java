@@ -18,11 +18,18 @@ public class Max3 {
 		int[] numbers = new int[]{a, b, c};
 		int max = a;
 		for (int i= 1; i < numbers.length; i++){
-			if (numbers[i] >= max) {
+			if (numbers[i] > max) {
 				max = numbers[i];
 			}
 		}
 		System.out.println("최댓값은 " + max + "입니다.");
+
+		int n = 1;
+		int k = 1;
+		while (Math.pow(2, n) != 32768){
+			n ++;
+		}
+		System.out.println("n의 값은: " + n + "이며 2의 n 제곱은" + Math.pow(2, n) +  "입니다.");
 	}
 
 }
