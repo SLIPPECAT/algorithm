@@ -2,30 +2,38 @@ package com.example.chapter6;
 
 import java.util.Scanner;
 
-public class QuickSort {
+public class QuickSort3 {
 
 	static void swap(int[] a, int idx1, int idx2){
 		int tmp = a[idx1]; a[idx1] = a[idx2]; a[idx2] = tmp;
 	}
 
-	static void quickSort(int[] a, int left, int right) {
+	static int sort3elem(int[] x, int a, int b, int c){
+		if (x[b] < x[a]) swap(x, b, a);
+		if (x[c] < x[b]) swap(x, c, b);
+		if (x[b] < x[a]) swap(x, b, a);
+		return b;
+	}
+
+	static void quickSort(int[] a, int left, int right){
 		int pl = left;
 		int pr = right;
-		int x = a[(pl + pr) / 2];
+		int m = sort3elem(a, pl, (pl + pr)/2, pr);
+		int x = a[m];
+
+		swap(a, m, right - 1);
+		pl++;
+		pr -= 2;
 
 		do {
-			while (a[pl] < x)
-				pl++;
-			while (a[pr] > x)
-				pr--;
+			while (a[pl] < x) pl++;
+			while (a[pr] > x) pr--;
 			if (pl <= pr)
 				swap(a, pl++, pr--);
 		} while (pl <= pr);
 
-		if (left < pr)
-			quickSort(a, left, pr);
-		if (pl < right)
-			quickSort(a, pl, right);
+		if (left < pr) quickSort(a, left, pr);
+		if (right > pl) quickSort(a, pl, right);
 	}
 
 	public static void main(String[] args) {
@@ -48,4 +56,5 @@ public class QuickSort {
 			System.out.println("x[" + i + "]: " + x[i]);
 		}
 	}
+
 }
